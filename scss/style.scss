@@ -1,0 +1,46 @@
+
+@import "../lib/bootsrap/scss/bootstrap-grid";
+@import "../lib/bootsrap/scss/bootstrap-reboot";
+@import "config/colors";
+
+body {
+  background-color: $hans;
+  color: $hania;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+
+#main-background {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: block;
+  opacity: 0.5;
+  background-image: url(../assets/images/odra.jpg);
+  background-size: cover;
+}
+.personal-info {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.personal-info h1 {
+  font-size: 4em;
+}
+
+img {
+  vertical-align: middle;
+  width: 400px;
+  margin: 200px auto 0;
+  display: block;
+  border: 2px solid;
+}
+
+a {
+  color: #eee;
+  font-size:24px;
+}
+
+a:hover {
+  color: #c9c9c9;
+}

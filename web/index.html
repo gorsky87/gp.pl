@@ -6,32 +6,35 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+  <script src="https://fb.me/react-0.14.3.js"></script>
+  <script src="https://fb.me/react-dom-0.14.3.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
+  <script src="theme/js/min/app.min.js"></script>
   <link rel="stylesheet" href="theme/css/style.css">
   <meta charset="UTF-8">
   <title>Górski Paweł | Drupal Certified Developer</title>
 
 </head>
+
 <body>
 <div id="main-background">
 </div>
-  <header>
+ <div id="example"></div>
 
-  </header>
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <img src="images/pawelgorski.jpg" alt="pawel gorski drupal developer">
-        </div>
-        <div class="col-lg-6">
-          <div class="personal-info">
-            <h1>Górski Paweł IT</h1>
-            <h2>Acquia Drupal 8 Certified Developer</h2>
-            <a href="mailto:info@gorskipawel.pl">info@gorskipawel.pl</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<script type="text/babel">
+
+
+  var Bacon = React.createClass({
+    render: function () {
+      return(<h3>This is a simple Component</h3>)
+    }
+  });
+
+  ReactDOM.render(<Bacon/>, document.getElementById('example'));
+</script>
+
 </body>
 </html>
