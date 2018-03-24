@@ -1831,13 +1831,13 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
-#main-background {
-  position: fixed;
+.full-screen {
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: block;
-  opacity: 0.5;
-  background-image: url(../assets/images/odra.jpg);
+  opacity: 1;
+  background-image: url("../../assets/images/odra.jpg");
   background-size: cover;
 }
 

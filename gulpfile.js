@@ -1,44 +1,54 @@
+"use strict";
 
-
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var watch = require('gulp-watch');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
-var fs = require('fs');
-var rename = require("gulp-rename");
-var del = require('del');
-var runSequence = require('run-sequence');
-
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const watch = require('gulp-watch');
+const uglify = require('gulp-uglify');
+const pump = require('pump');
+const fs = require('fs');
+const rename = require("gulp-rename");
+const del = require('del');
+const runSequence = require('run-sequence');
+const compassImagehelper = require('gulp-compass-imagehelper');
+const sassImage = require('gulp-sass-image');
+const browserify = require('gulp-browserify');
+const babel = require('gulp-babel');
+const moveTo = require("moveto");
 
 
 // Patterns
-var scss_pattern = '**/*.scss';
-var js_pattern = '*.js';
+let scss_pattern = '**/*.scss';
+let js_pattern = '*.js';
 
 // Theme directory
-var base_dir = '.';
-var theme_dir = 'web/theme';
+let base_dir = '.';
+let theme_dir = 'web/theme';
 
 // Subdirectories
-var scss_dir = base_dir + '/scss';
-var css_dir = theme_dir + '/css';
-var js_dir = base_dir + '/js';
-var jsmin_dir = theme_dir + '/js/min';
+let scss_dir = base_dir + '/scss';
+let css_dir = theme_dir + '/css';
+let js_dir = base_dir + '/js';
+let jsmin_dir = theme_dir + '/js';
 
 // Inputs
-var scss_input = scss_dir + '/' + scss_pattern;
-var js_input = js_dir + '/' + js_pattern;
+let scss_input = scss_dir + '/' + scss_pattern;
+let js_input = js_dir + '/' + js_pattern;
+
+
+// Images
+
+let images_input = 'web/assets/images/';
+
 
 // Dev SASS options
-var sassOptionsDev = {
+let sassOptionsDev = {
   errLogToConsole: true,
   outputStyle: 'expanded'
 };
 
 // Prod SASS options
-var sassOptionsProd = {
+let sassOptionsProd = {
   outputStyle: 'compressed'
 };
 
@@ -50,7 +60,7 @@ var sassOptionsProd = {
 gulp.task('default', ['watch' /*, possible other tasks... */]);
 
 // Watch SASS & KSS & JS
-gulp.task('watch', ['sass:compile', 'js:compile'], function(callback) {
+gulp.task('watch', ['sass:compile', 'js:compile', 'sass-image'], function(callback) {
   watch(scss_input, function(vinyl) {
     console.log('File ' + vinyl.path + ' changed, running tasks...');
     runSequence([ 'sass:compile']);
@@ -88,6 +98,13 @@ gulp.task('js:compile', function (cb) {
   pump([
     gulp.src(js_input),
     sourcemaps.init(),
+    browserify({
+      insertGlobals : true,
+      debug : !gulp.env.production
+    }),
+    babel({
+      presets: ['env']
+    }),
     uglify(),
     rename({ suffix: '.min' }),
     sourcemaps.write('.'),
@@ -95,16 +112,16 @@ gulp.task('js:compile', function (cb) {
   ], cb );
 });
 
-// Compile Base JS
-gulp.task('js:compile-base', function (cb) {
-  pump([
-    gulp.src(base_js_input),
-    sourcemaps.init(),
-    uglify(),
-    rename({ suffix: '.min' }),
-    sourcemaps.write('.'),
-    gulp.dest(base_jsmin_dir)
-  ], cb );
+gulp.task('sass-image', function () {
+  return gulp.src('_sources/images/**/*.+(jpeg|jpg|png|gif|svg)')
+    .pipe(compassImagehelper({
+      targetFile: '_sass-image.scss', // default target filename is '_sass-image.scss'
+      // template: 'your-sass-image-template.mustache',
+      images_path: images_input,
+      css_path: css_dir,
+      prefix: 'icon-'
+    }))
+    .pipe(gulp.dest('scss'));
 });
 
 // Generate the production styles

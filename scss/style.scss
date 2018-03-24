@@ -2,6 +2,7 @@
 @import "../lib/bootsrap/scss/bootstrap-grid";
 @import "../lib/bootsrap/scss/bootstrap-reboot";
 @import "config/colors";
+@import "sass-image";
 
 body {
   background-color: $hans;
@@ -10,13 +11,13 @@ body {
 }
 
 
-#main-background {
-  position: fixed;
+.full-screen {
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: block;
-  opacity: 0.5;
-  background-image: url(../assets/images/odra.jpg);
+  opacity: 1;
+  background-image: image-url('odra.jpg');
   background-size: cover;
 }
 .personal-info {
