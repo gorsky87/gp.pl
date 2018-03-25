@@ -14,8 +14,8 @@ const compassImagehelper = require('gulp-compass-imagehelper');
 const sassImage = require('gulp-sass-image');
 const browserify = require('gulp-browserify');
 const babel = require('gulp-babel');
+const react = require('gulp-react');
 const moveTo = require("moveto");
-
 
 // Patterns
 let scss_pattern = '**/*.scss';
@@ -98,12 +98,13 @@ gulp.task('js:compile', function (cb) {
   pump([
     gulp.src(js_input),
     sourcemaps.init(),
+    react({
+      es6module: true
+    }),
     browserify({
       insertGlobals : true,
-      debug : !gulp.env.production
-    }),
-    babel({
-      presets: ['env']
+      debug : !gulp.env.production,
+
     }),
     uglify(),
     rename({ suffix: '.min' }),

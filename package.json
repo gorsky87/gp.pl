@@ -15,26 +15,48 @@
   "bugs": {
     "url": "https://github.com/gorsky87/gp.pl/issues"
   },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env",
+            "react"
+          ]
+        }
+      ]
+    ]
+  },
   "homepage": "https://github.com/gorsky87/gp.pl#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.1",
     "gulp-browserify": "^0.5.1",
     "gulp-compass-imagehelper": "^1.0.2",
+    "gulp-react": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sass-image": "^1.0.5",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
+    "jquery": "^3.3.1",
     "pump": "^1.0.2",
     "run-sequence": "^2.2.0"
   },
   "dependencies": {
-    "moveto": "^1.7.1"
+    "create-react-class": "^15.6.3",
+    "moveto": "^1.7.1",
+    "react": "^16.2.0",
+    "react-burger-menu": "^2.3.0",
+    "react-dom": "^16.2.0"
   }
 }

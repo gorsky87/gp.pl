@@ -23,13 +23,16 @@ class __TwigTemplate_aa03994db6e36b030a5ef4a9d522b070a35bf9ef8493569deddc0d8eb12
         $this->loadTemplate("head.html", "home_page.html", 1)->display($context);
         // line 2
         echo "
-<div class=\"container\">
   <section class=\"full-screen section-1\">
-    <p class=\"btnaa\">sadsaddas</p>
-    <p class=\"btnaa\">sadsaddas</p>
-    <p class=\"btnaa\">sadsaddas</p>
-
+      <div class=\"container\">
+        <button type=\"button\" class=\"js-trigger\" data-target=\"#section-3\" data-mt-duration=\"2000\">Trigger</button>
+        <div id=\"root\"></div>
+        <div id=\"main-menu\"></div>
+      </div>
+    <div class=\"render\"></div>
   </section>
+
+
 
   <section id=\"section-2\" class=\"full-screen section-2\">
     adsa
@@ -69,13 +72,16 @@ class __TwigTemplate_aa03994db6e36b030a5ef4a9d522b070a35bf9ef8493569deddc0d8eb12
     {
         return new Twig_Source("{% include \"head.html\" %}
 
-<div class=\"container\">
   <section class=\"full-screen section-1\">
-    <p class=\"btnaa\">sadsaddas</p>
-    <p class=\"btnaa\">sadsaddas</p>
-    <p class=\"btnaa\">sadsaddas</p>
-
+      <div class=\"container\">
+        <button type=\"button\" class=\"js-trigger\" data-target=\"#section-3\" data-mt-duration=\"2000\">Trigger</button>
+        <div id=\"root\"></div>
+        <div id=\"main-menu\"></div>
+      </div>
+    <div class=\"render\"></div>
   </section>
+
+
 
   <section id=\"section-2\" class=\"full-screen section-2\">
     adsa
